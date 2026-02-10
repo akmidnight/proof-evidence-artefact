@@ -1,0 +1,23 @@
+# FlexProof Code Owners
+# These owners will be automatically requested for review on pull requests.
+
+# Default owners for everything in the repo
+*                       @codaex/flexproof-core
+
+# Domain model and specifications
+src/FlexProof.Domain/   @codaex/flexproof-core
+docs/specs/             @codaex/flexproof-core
+
+# Cryptographic layer - requires security-aware review
+src/FlexProof.Crypto/   @codaex/flexproof-security
+
+# API surface
+src/FlexProof.Api/      @codaex/flexproof-core
+
+# UI
+src/FlexProof.Ui/       @codaex/flexproof-ui
+
+# CI/CD and deployment
+.github/                @codaex/flexproof-devops
+Dockerfile              @codaex/flexproof-devops
+docker-compose.yml      @codaex/flexproof-devops

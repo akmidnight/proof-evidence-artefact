@@ -1,0 +1,25 @@
+{
+  "isValid": true,
+  "verificationId": "407bee163dd64a1c8965c07509e00409",
+  "artifactId": "a685c28d7f8042259865e68c46a73cfa",
+  "verifiedAt": "2026-02-10T10:01:54.5259755+00:00",
+  "checks": [
+    {
+      "checkName": "StateIsIssued",
+      "passed": true
+    },
+    {
+      "checkName": "CommitmentMatch",
+      "passed": true
+    },
+    {
+      "checkName": "SignatureValid",
+      "passed": true
+    },
+    {
+      "checkName": "RightsInPeriod",
+      "passed": true
+    }
+  ],
+  "failureReasons": []
+}

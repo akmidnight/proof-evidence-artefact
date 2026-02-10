@@ -1,0 +1,27 @@
+{
+  "artifactId": "b30a707932114fcd9d905980abe9e999",
+  "schemaVersion": "1.0",
+  "issuerId": "flexproof-pilot",
+  "createdAt": "2026-02-10T10:01:54.5201384+00:00",
+  "state": "Issued",
+  "periodStart": "2025-11-01T00:00:00+00:00",
+  "periodEnd": "2025-11-30T23:59:59+00:00",
+  "claim": {
+    "type": "DemandChargeDeltaEstimate",
+    "metricName": "demand_charge_delta_pct",
+    "value": 16.02,
+    "unit": "%",
+    "baselineRef": "lookback-30d-v1",
+    "computationVersion": "1.0.0"
+  },
+  "rights": {
+    "counterpartyId": "energy-supplier-01",
+    "purpose": "tariff negotiation",
+    "validFrom": "2026-02-09T10:01:54.4598502+00:00",
+    "validTo": "2027-02-10T10:01:54.4599067+00:00",
+    "constraints": {}
+  },
+  "dataCommitment": "d51d0702c7859f155ce716aae9937fd2797d021b52b433a639e7e551ab209c47",
+  "signature": "izGnCgWLCE7qVrvabbiWhy/gRMfdjyc8FUJAV04gMD1Z0mRGW2R/\u002BLkvzIBf4FdEyhdK9HdklVWs0bCAVIY2zw==",
+  "signerPublicKey": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHgSgyDeOsH2yseuNcyJM13GWXmOSJk/W530mtvu4TVel8IWZPIGIJjMitT54UWOAZVt91Q9A4GFkYFiz\u002BfDgLg=="
+}

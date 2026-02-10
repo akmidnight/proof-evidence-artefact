@@ -1,0 +1,35 @@
+<h2>Usage-Right Artifacts</h2>
+<p>
+  <a routerLink="/artifacts/issue" class="btn primary">Issue New Artifact</a>
+</p>
+
+@if (artifacts().length === 0) {
+  <p>No artifacts yet. Issue one to get started.</p>
+} @else {
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>State</th>
+        <th>Claim</th>
+        <th>Value</th>
+        <th>Counterparty</th>
+        <th>Period</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (a of artifacts(); track a.artifactId) {
+        <tr>
+          <td class="mono">{{ a.artifactId | slice: 0:12 }}...</td>
+          <td><span class="badge" [class]="a.state.toLowerCase()">{{ a.state }}</span></td>
+          <td>{{ a.claim.type }}</td>
+          <td>{{ a.claim.value }} {{ a.claim.unit }}</td>
+          <td>{{ a.rights.counterpartyId }}</td>
+          <td>{{ a.periodStart | date: 'mediumDate' }} - {{ a.periodEnd | date: 'mediumDate' }}</td>
+          <td><a [routerLink]="['/artifacts', a.artifactId]" class="btn primary">Details</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

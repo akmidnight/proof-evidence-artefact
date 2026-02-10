@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flexproof.codaex.com/schemas/usage-right-artifact/v1",
+  "title": "UsageRightArtifact",
+  "description": "A verifiable, purpose-bound usage-right artifact attesting to an operational outcome.",
+  "type": "object",
+  "required": [
+    "artifactId",
+    "schemaVersion",
+    "issuerId",
+    "createdAt",
+    "state",
+    "periodStart",
+    "periodEnd",
+    "claim",
+    "rights"
+  ],
+  "properties": {
+    "artifactId": {
+      "type": "string",
+      "description": "Globally unique artifact identifier."
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Version of the artifact schema."
+    },
+    "issuerId": {
+      "type": "string",
+      "description": "Identifier of the issuing entity."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the artifact was created."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["Draft", "Issued", "Revoked", "Superseded"],
+      "description": "Current lifecycle state."
+    },
+    "periodStart": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the observation period."
+    },
+    "periodEnd": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the observation period."
+    },
+    "claim": {
+      "$ref": "#/$defs/ClaimValue"
+    },
+    "rights": {
+      "$ref": "#/$defs/RightsScope"
+    },
+    "dataCommitment": {
+      "type": ["string", "null"],
+      "description": "SHA-256 hex digest over canonicalized claim inputs."
+    },
+    "signature": {
+      "type": ["string", "null"],
+      "description": "Base64-encoded ECDSA P-256 detached signature."
+    },
+    "signerPublicKey": {
+      "type": ["string", "null"],
+      "description": "Base64-encoded ECDSA P-256 public key (SPKI format)."
+    },
+    "supersededBy": {
+      "type": ["string", "null"],
+      "description": "Reference to a superseding artifact."
+    },
+    "revocationRef": {
+      "type": ["string", "null"],
+      "description": "Reference to the revocation record."
+    }
+  },
+  "$defs": {
+    "ClaimValue": {
+      "type": "object",
+      "required": ["type", "metricName", "value", "unit", "computationVersion"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["PeakWindowCompliance", "DemandChargeDeltaEstimate"],
+          "description": "Claim type identifier."
+        },
+        "metricName": {
+          "type": "string",
+          "description": "Metric name (e.g. peak_kw, demand_charge_delta_pct)."
+        },
+        "value": {
+          "type": "number",
+          "description": "Numeric value of the claim."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement."
+        },
+        "baselineRef": {
+          "type": ["string", "null"],
+          "description": "Reference to the baseline computation."
+        },
+        "computationVersion": {
+          "type": "string",
+          "description": "Version of the computation logic."
+        }
+      }
+    },
+    "RightsScope": {
+      "type": "object",
+      "required": ["counterpartyId", "purpose", "validFrom", "validTo"],
+      "properties": {
+        "counterpartyId": {
+          "type": "string",
+          "description": "Counterparty allowed to consume this artifact."
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Human-readable purpose."
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start of the rights validity window."
+        },
+        "validTo": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End of the rights validity window."
+        },
+        "constraints": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Additional key-value constraints."
+        }
+      }
+    }
+  }
+}
