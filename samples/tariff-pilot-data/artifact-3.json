@@ -1,0 +1,26 @@
+{
+  "artifactId": "7417563009fa400fb1809fd40bcd3a80",
+  "schemaVersion": "1.0",
+  "issuerId": "flexproof-pilot",
+  "createdAt": "2026-02-10T10:01:54.5223591+00:00",
+  "state": "Issued",
+  "periodStart": "2025-11-01T00:00:00+00:00",
+  "periodEnd": "2025-11-30T23:59:59+00:00",
+  "claim": {
+    "type": "PeakWindowCompliance",
+    "metricName": "peak_kw",
+    "value": 250,
+    "unit": "kW",
+    "computationVersion": "1.0.0"
+  },
+  "rights": {
+    "counterpartyId": "energy-supplier-01",
+    "purpose": "tariff negotiation",
+    "validFrom": "2026-02-09T10:01:54.4598502+00:00",
+    "validTo": "2027-02-10T10:01:54.4599067+00:00",
+    "constraints": {}
+  },
+  "dataCommitment": "115d5212cfcedf46888019a9f359bf19417044a4488e47348f54acfad2572e83",
+  "signature": "nXlKRsquefv7dimoYhfeejwmAsFybYt8G5/8s5T\u002BtWoXGf/hPjXM/Cp3TkkF3RQ91/LO0HbttSC7JiuGJWRaCw==",
+  "signerPublicKey": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHgSgyDeOsH2yseuNcyJM13GWXmOSJk/W530mtvu4TVel8IWZPIGIJjMitT54UWOAZVt91Q9A4GFkYFiz\u002BfDgLg=="
+}

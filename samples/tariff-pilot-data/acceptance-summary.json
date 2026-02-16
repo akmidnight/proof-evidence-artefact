@@ -1,0 +1,51 @@
+{
+  "title": "FlexProof Tariff Pilot - Counterparty Acceptance Packet",
+  "generatedAt": "2026-02-10T10:01:54.5550499+00:00",
+  "totalArtifacts": 5,
+  "allValid": true,
+  "artifacts": [
+    {
+      "artifactId": "8db4b6f982334c0eb1f6ad64041b95c2",
+      "type": "PeakWindowCompliance",
+      "value": 150,
+      "unit": "kW",
+      "counterparty": "energy-supplier-01",
+      "purpose": "tariff negotiation"
+    },
+    {
+      "artifactId": "b30a707932114fcd9d905980abe9e999",
+      "type": "DemandChargeDeltaEstimate",
+      "value": 16.02,
+      "unit": "%",
+      "counterparty": "energy-supplier-01",
+      "purpose": "tariff negotiation"
+    },
+    {
+      "artifactId": "7417563009fa400fb1809fd40bcd3a80",
+      "type": "PeakWindowCompliance",
+      "value": 250,
+      "unit": "kW",
+      "counterparty": "energy-supplier-01",
+      "purpose": "tariff negotiation"
+    },
+    {
+      "artifactId": "a685c28d7f8042259865e68c46a73cfa",
+      "type": "DemandChargeDeltaEstimate",
+      "value": 15.99,
+      "unit": "%",
+      "counterparty": "energy-supplier-01",
+      "purpose": "tariff negotiation"
+    },
+    {
+      "artifactId": "6f73798cd68b4bb6855ee572a4c0f2bc",
+      "type": "DemandChargeDeltaEstimate",
+      "value": 15.99,
+      "unit": "%",
+      "counterparty": "asset-manager-01",
+      "purpose": "portfolio utilization assessment"
+    }
+  ],
+  "methodology": "See docs/specs/artifact-types/ for claim computation methodology.",
+  "rawDataTransferred": false,
+  "dataMinimizationEnforced": true
+}

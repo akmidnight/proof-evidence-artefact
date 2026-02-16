@@ -1,0 +1,50 @@
+<h2>Verify Artifact</h2>
+<div class="card">
+  <p>Enter an artifact ID to independently verify its integrity and authenticity.</p>
+
+  <div class="form-group">
+    <label>Artifact ID</label>
+    <input
+      type="text"
+      [ngModel]="artifactId()"
+      (ngModelChange)="artifactId.set($event)"
+      placeholder="Paste artifact ID here"
+    />
+  </div>
+
+  <button class="btn success" (click)="verify()" [disabled]="loading()">
+    {{ loading() ? 'Verifying...' : 'Verify' }}
+  </button>
+</div>
+
+@if (error()) {
+  <div class="card" style="border-left: 4px solid #e53935;">
+    <strong>Error:</strong> {{ error() }}
+  </div>
+}
+
+@if (result(); as vr) {
+  <div class="card">
+    <h3>Result: {{ vr.isValid ? 'VALID' : 'INVALID' }}</h3>
+    <table>
+      <thead>
+        <tr><th>Check</th><th>Result</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        @for (c of vr.checks; track c.checkName) {
+          <tr>
+            <td>{{ c.checkName }}</td>
+            <td><span class="badge" [class]="c.passed ? 'issued' : 'revoked'">{{ c.passed ? 'Pass' : 'Fail' }}</span></td>
+            <td>{{ c.detail ?? '-' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    @if (vr.failureReasons.length > 0) {
+      <p><strong>Failure Reasons:</strong> {{ vr.failureReasons.join(', ') }}</p>
+    }
+    <div style="margin-top: 1rem;">
+      <button class="btn primary" (click)="downloadReport()">Download Verification Report</button>
+    </div>
+  </div>
+}

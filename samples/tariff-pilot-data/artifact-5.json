@@ -1,0 +1,27 @@
+{
+  "artifactId": "6f73798cd68b4bb6855ee572a4c0f2bc",
+  "schemaVersion": "1.0",
+  "issuerId": "flexproof-pilot",
+  "createdAt": "2026-02-10T10:01:54.529165+00:00",
+  "state": "Issued",
+  "periodStart": "2025-11-01T00:00:00+00:00",
+  "periodEnd": "2025-11-30T23:59:59+00:00",
+  "claim": {
+    "type": "DemandChargeDeltaEstimate",
+    "metricName": "demand_charge_delta_pct",
+    "value": 15.99,
+    "unit": "%",
+    "baselineRef": "lookback-30d-v1",
+    "computationVersion": "1.0.0"
+  },
+  "rights": {
+    "counterpartyId": "asset-manager-01",
+    "purpose": "portfolio utilization assessment",
+    "validFrom": "2026-02-09T10:01:54.5291626+00:00",
+    "validTo": "2027-02-10T10:01:54.5291629+00:00",
+    "constraints": {}
+  },
+  "dataCommitment": "ece05704eec3e8412b115936a8ec25fb51c11cc038f95842bebd3cb7d5a03db1",
+  "signature": "DeJiysgCFNpnVFa0y3Xjbns8MVFqLmd1Wq75XBfg14oxuVrt8Sr092U3\u002BzfxV\u002BuOBm9W3WZa8FXEEnHDlKmtXQ==",
+  "signerPublicKey": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHgSgyDeOsH2yseuNcyJM13GWXmOSJk/W530mtvu4TVel8IWZPIGIJjMitT54UWOAZVt91Q9A4GFkYFiz\u002BfDgLg=="
+}

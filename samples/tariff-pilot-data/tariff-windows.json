@@ -1,0 +1,8 @@
+[
+  {
+    "label": "Peak",
+    "startTime": "07:00",
+    "endTime": "20:00",
+    "applicableDays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  }
+]

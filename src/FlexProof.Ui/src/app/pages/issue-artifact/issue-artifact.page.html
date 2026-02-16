@@ -1,0 +1,62 @@
+<h2>Issue New Artifact</h2>
+<div class="card">
+  <form (ngSubmit)="submit()">
+    <div class="form-group">
+      <label>Claim Type</label>
+      <select [ngModel]="claimType()" (ngModelChange)="claimType.set($event)" name="claimType">
+        <option value="PeakWindowCompliance">Peak Window Compliance</option>
+        <option value="DemandChargeDeltaEstimate">Demand Charge Delta Estimate</option>
+      </select>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="form-group">
+        <label>Period Start</label>
+        <input type="date" [ngModel]="periodStart()" (ngModelChange)="periodStart.set($event)" name="periodStart" />
+      </div>
+      <div class="form-group">
+        <label>Period End</label>
+        <input type="date" [ngModel]="periodEnd()" (ngModelChange)="periodEnd.set($event)" name="periodEnd" />
+      </div>
+    </div>
+
+    @if (claimType() === 'DemandChargeDeltaEstimate') {
+      <div class="form-group">
+        <label>Baseline Mode</label>
+        <select [ngModel]="baselineMode()" (ngModelChange)="baselineMode.set($event)" name="baselineMode">
+          <option value="HistoricalLookback">Historical Lookback</option>
+          <option value="CounterfactualModel">Counterfactual Model</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Lookback Start</label>
+        <input type="date" [ngModel]="lookbackStart()" (ngModelChange)="lookbackStart.set($event)" name="lookbackStart" />
+      </div>
+    }
+
+    <div class="form-group">
+      <label>Counterparty ID</label>
+      <input type="text" [ngModel]="counterpartyId()" (ngModelChange)="counterpartyId.set($event)" name="counterpartyId" placeholder="e.g. energy-supplier-01" required />
+    </div>
+
+    <div class="form-group">
+      <label>Purpose</label>
+      <input type="text" [ngModel]="purpose()" (ngModelChange)="purpose.set($event)" name="purpose" placeholder="e.g. tariff negotiation" required />
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="form-group">
+        <label>Rights Valid From</label>
+        <input type="date" [ngModel]="rightsValidFrom()" (ngModelChange)="rightsValidFrom.set($event)" name="rightsValidFrom" />
+      </div>
+      <div class="form-group">
+        <label>Rights Valid To</label>
+        <input type="date" [ngModel]="rightsValidTo()" (ngModelChange)="rightsValidTo.set($event)" name="rightsValidTo" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn primary" [disabled]="submitting()">
+      {{ submitting() ? 'Issuing...' : 'Issue Artifact' }}
+    </button>
+  </form>
+</div>

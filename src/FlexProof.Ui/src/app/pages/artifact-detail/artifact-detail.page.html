@@ -1,0 +1,108 @@
+@if (artifact(); as a) {
+  <h2>Artifact Detail</h2>
+
+  <div class="card">
+    <h3>
+      <span class="badge" [class]="a.state.toLowerCase()">{{ a.state }}</span>
+      {{ a.claim.type }}
+    </h3>
+
+    <table>
+      <tr><td><strong>Artifact ID</strong></td><td class="mono">{{ a.artifactId }}</td></tr>
+      <tr><td><strong>Issuer</strong></td><td>{{ a.issuerId }}</td></tr>
+      <tr><td><strong>Created</strong></td><td>{{ a.createdAt | date: 'medium' }}</td></tr>
+      <tr><td><strong>Period</strong></td><td>{{ a.periodStart | date: 'mediumDate' }} - {{ a.periodEnd | date: 'mediumDate' }}</td></tr>
+      <tr><td><strong>Claim Value</strong></td><td>{{ a.claim.value }} {{ a.claim.unit }} ({{ a.claim.metricName }})</td></tr>
+      <tr><td><strong>Computation</strong></td><td>v{{ a.claim.computationVersion }}</td></tr>
+      @if (a.claim.baselineRef) {
+        <tr><td><strong>Baseline</strong></td><td>{{ a.claim.baselineRef }}</td></tr>
+      }
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Rights Scope</h3>
+    <table>
+      <tr><td><strong>Counterparty</strong></td><td>{{ a.rights.counterpartyId }}</td></tr>
+      <tr><td><strong>Purpose</strong></td><td>{{ a.rights.purpose }}</td></tr>
+      <tr><td><strong>Valid From</strong></td><td>{{ a.rights.validFrom | date: 'medium' }}</td></tr>
+      <tr><td><strong>Valid To</strong></td><td>{{ a.rights.validTo | date: 'medium' }}</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Cryptographic Proof</h3>
+    <table>
+      <tr><td><strong>Commitment</strong></td><td class="mono">{{ a.dataCommitment }}</td></tr>
+      <tr><td><strong>Signature</strong></td><td class="mono">{{ a.signature | slice: 0: 40 }}...</td></tr>
+      <tr><td><strong>Public Key</strong></td><td class="mono">{{ a.signerPublicKey | slice: 0: 40 }}...</td></tr>
+    </table>
+  </div>
+
+  <!-- Actions -->
+  <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+    <button class="btn success" (click)="verify()">Verify Artifact</button>
+    <button class="btn primary" (click)="downloadArtifact()">Download Artifact JSON</button>
+
+    @if (a.state === 'Issued') {
+      <input
+        type="text"
+        placeholder="Revocation reason"
+        [value]="revokeReason()"
+        (input)="revokeReason.set($any($event.target).value)"
+        style="flex: 1; padding: 0.5rem; border: 1px solid #ccc; border-radius: 6px;"
+      />
+      <button class="btn danger" (click)="revoke()">Revoke</button>
+    }
+  </div>
+
+  <!-- Verification Result -->
+  @if (verificationResult(); as vr) {
+    <div class="card">
+      <h3>Verification Result: {{ vr.isValid ? 'PASS' : 'FAIL' }}</h3>
+      <table>
+        <thead>
+          <tr><th>Check</th><th>Result</th><th>Detail</th></tr>
+        </thead>
+        <tbody>
+          @for (c of vr.checks; track c.checkName) {
+            <tr>
+              <td>{{ c.checkName }}</td>
+              <td><span class="badge" [class]="c.passed ? 'issued' : 'revoked'">{{ c.passed ? 'Pass' : 'Fail' }}</span></td>
+              <td>{{ c.detail ?? '-' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <div style="margin-top: 0.75rem;">
+        <button class="btn primary" (click)="downloadVerificationReport()">Download Verification Report</button>
+      </div>
+    </div>
+  }
+
+  <!-- Audit Trail -->
+  <div class="card">
+    <h3>Audit Trail</h3>
+    @if (auditTrail().length === 0) {
+      <p>No audit entries yet.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr><th>Time</th><th>Event</th><th>Actor</th><th>Detail</th></tr>
+        </thead>
+        <tbody>
+          @for (e of auditTrail(); track e.entryId) {
+            <tr>
+              <td>{{ e.timestamp | date: 'medium' }}</td>
+              <td>{{ e.eventType }}</td>
+              <td>{{ e.actorId }}</td>
+              <td>{{ e.detail ?? '-' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+} @else {
+  <p>Loading...</p>
+}
